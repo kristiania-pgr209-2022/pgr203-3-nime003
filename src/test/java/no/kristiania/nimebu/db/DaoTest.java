@@ -1,14 +1,13 @@
-package no.kristiania.nimebu.dbTest;
+package no.kristiania.nimebu.db;
 
 import no.kristiania.nimebu.Product;
-import no.kristiania.nimebu.db.ProductDao;
 import org.junit.jupiter.api.Test;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class dbTest {
-    private ProductDao dao;
+public class DaoTest {
+    private ProductDao dao = new ProductDao();
 
     @Test
     void shouldRetrieveSavedProduct() {
@@ -16,12 +15,11 @@ public class dbTest {
         dao.save(product);
         assertThat(dao.retrieve(product.getId()))
                 .hasNoNullFieldsOrProperties()
-                .isNotSameAs(product)
                 .usingRecursiveComparison()
                 .isEqualTo(product);
     }
 
     private Product sampleProduct() {
-        return new Product("", "");
+        return new Product("testBrand", "testName");
     }
 }

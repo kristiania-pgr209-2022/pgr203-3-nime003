@@ -25,7 +25,7 @@ public class ProductsEndpoint extends HttpServlet {
         JsonArrayBuilder result = Json.createArrayBuilder();
         for (Product product : products) {
             result.add(Json.createObjectBuilder()
-                    .add("productBrand", product.getProductBrand())
+                    .add("productBrand", product.getBrand())
                     .add("productName", product.getName())
             );
         }

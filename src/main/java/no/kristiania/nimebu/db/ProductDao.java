@@ -30,7 +30,7 @@ public class ProductDao {
              }
         }
 
-        product.setId((long) (products.size() +1));
+        product.setId((long) products.size());
         products.put(product.getId(), product);
     }
 

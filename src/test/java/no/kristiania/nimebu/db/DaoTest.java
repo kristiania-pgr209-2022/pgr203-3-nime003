@@ -6,8 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-import javax.sql.DataSource;
-
 import java.sql.SQLException;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,10 +15,14 @@ public class DaoTest {
     private ProductDao dao;
 
     @BeforeEach
-    void setup(){
+    void setup() throws SQLException {
         var dataSource = new JdbcDataSource();
-        dataSource.setURL("jdbc:h2:mem:DaoTest");
+        dataSource.setURL("jdbc:h2:mem:DaoTest;DB_CLOSE_DELAY=-1");
 
+        try (var con = dataSource.getConnection()){
+            var stmt = con.createStatement();
+            stmt.executeUpdate("create table products (id serial primary key, brand varchar(64), name varchar(64))");
+        }
         dao = new ProductDao(dataSource);
     }
 

@@ -33,10 +33,12 @@ public class DaoTest {
         assertThat(dao.retrieve(product.getId()))
                 .hasNoNullFieldsOrProperties()
                 .usingRecursiveComparison()
-                .isEqualTo(product);
+                .isEqualTo(product)
+                .isNotSameAs(product);
+
     }
 
     private Product sampleProduct() {
-        return new Product("testBrand", "testName");
+        return new Product("test", "name");
     }
 }

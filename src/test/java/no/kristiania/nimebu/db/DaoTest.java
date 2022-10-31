@@ -1,6 +1,7 @@
 package no.kristiania.nimebu.db;
 
 import no.kristiania.nimebu.Product;
+import org.flywaydb.core.Flyway;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,14 +16,13 @@ public class DaoTest {
     private ProductDao dao;
 
     @BeforeEach
-    void setup() throws SQLException {
+    void setup() {
         var dataSource = new JdbcDataSource();
         dataSource.setURL("jdbc:h2:mem:DaoTest;DB_CLOSE_DELAY=-1");
 
-        try (var con = dataSource.getConnection()){
-            var stmt = con.createStatement();
-            stmt.executeUpdate("create table products (id serial primary key, brand varchar(64), name varchar(64))");
-        }
+        var flyway = Flyway.configure().dataSource(dataSource).load();
+        flyway.migrate();
+
         dao = new ProductDao(dataSource);
     }
 

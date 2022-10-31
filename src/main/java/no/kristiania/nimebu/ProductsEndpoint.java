@@ -14,7 +14,7 @@ import java.util.List;
 
 @Path("/products")
 public class ProductsEndpoint extends HttpServlet {
-    private static final List<Product> products =new ArrayList<>();
+    private static final List<Product> products = new ArrayList<>();
     static {
         products.add(new Product("testBrand", "testProduct"));
     }
@@ -37,7 +37,7 @@ public class ProductsEndpoint extends HttpServlet {
     @POST
     public Response addProduct(String body) {
         var jsonProduct = Json.createReader(new StringReader(body)).readObject();
-        var product =new Product(
+        var product = new Product(
                 jsonProduct.getString("productBrand"),
                 jsonProduct.getString("productName")
         );

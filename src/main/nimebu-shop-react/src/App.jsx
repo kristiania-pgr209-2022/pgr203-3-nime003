@@ -2,8 +2,8 @@ import {useEffect, useState} from 'react'
 import './App.css'
 
 function refreshPage() {
+    {/*This timeout is necessary because some browsers bug out when instantly reloading page after submitting a form*/}
     setTimeout(reloadPage, 100);
-
     function reloadPage(){
         window.location.reload();
     }

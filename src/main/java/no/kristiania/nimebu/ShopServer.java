@@ -39,7 +39,7 @@ public class ShopServer {
             wContext.setBaseResource(resources);
         }
 
-        ServletHolder jerseyServlet =wContext.addServlet(ServletContainer.class, "/api/*");
+        ServletHolder jerseyServlet = wContext.addServlet(ServletContainer.class, "/api/*");
         jerseyServlet.setInitParameter("jersey.config.server.provider.packages", "no.kristiania.nimebu");
 
         shopServer.setHandler(new HandlerList(wContext));

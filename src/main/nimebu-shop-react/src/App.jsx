@@ -2,18 +2,23 @@ import {useEffect, useState} from 'react'
 import './App.css'
 
 function refreshPage() {
-    window.location.reload(1);
+    {/*This timeout is necessary because some browsers bug out when instantly reloading page after submitting a form*/}
+    setTimeout(reloadPage, 100);
+    function reloadPage(){
+        window.location.reload();
+    }
 }
 
+
 function AddProduct() {
-    const [productId, setProductId] = useState("");
+    const [productBrand, setProductBrand] = useState("");
     const [productName, setProductName] = useState("");
 
     async function handleSubmit(e) {
         e.preventDefault();
         await fetch("/api/products", {
             method: "post",
-            body: JSON.stringify({productId, productName}),
+            body: JSON.stringify({productBrand, productName}),
             headers: {
                 "Content-Type": "application/json"
             }
@@ -24,7 +29,7 @@ function AddProduct() {
 
     return <div>
         <form onSubmit={handleSubmit}>
-            <div><label>Product id: <input type={"number"} value={productId} onChange={event => setProductId(event.target.value)}/></label></div>
+            <div><label>Product Brand: <input type={"number"} value={productBrand} onChange={event => setProductBrand(event.target.value)}/></label></div>
             <div><label>Product name: <input type={"text"} value={productName} onChange={event => setProductName(event.target.value)}/></label></div>
             <button onClick={refreshPage}>submit</button>
         </form>
@@ -46,7 +51,7 @@ function ListProducts() {
   if (loading){
       return <div>Loading products ...</div>
   }
-  return <ul>{products.map(p => <div>produkt id {p.productId} : {p.productName}</div>)}</ul>
+  return <ul>{products.map(p => <div>product brand {p.productBrand} : {p.productName}</div>)}</ul>
 }
 
 function App() {

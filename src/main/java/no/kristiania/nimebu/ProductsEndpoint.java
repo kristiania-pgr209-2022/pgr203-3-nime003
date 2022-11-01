@@ -14,10 +14,9 @@ import java.util.List;
 
 @Path("/products")
 public class ProductsEndpoint extends HttpServlet {
-    private static final List<Product> products =new ArrayList<>();
+    private static final List<Product> products = new ArrayList<>();
     static {
-        products.add(new Product(10, "Potet"));
-        products.add(new Product(11, "Peppermynte"));
+        products.add(new Product("testBrand", "testProduct"));
     }
 
     @Path("/")
@@ -26,7 +25,7 @@ public class ProductsEndpoint extends HttpServlet {
         JsonArrayBuilder result = Json.createArrayBuilder();
         for (Product product : products) {
             result.add(Json.createObjectBuilder()
-                    .add("productId", product.getId())
+                    .add("productBrand", product.getBrand())
                     .add("productName", product.getName())
             );
         }
@@ -38,8 +37,8 @@ public class ProductsEndpoint extends HttpServlet {
     @POST
     public Response addProduct(String body) {
         var jsonProduct = Json.createReader(new StringReader(body)).readObject();
-        var product =new Product(
-                Integer.parseInt(jsonProduct.getString("productId")),
+        var product = new Product(
+                jsonProduct.getString("productBrand"),
                 jsonProduct.getString("productName")
         );
         products.add(product);

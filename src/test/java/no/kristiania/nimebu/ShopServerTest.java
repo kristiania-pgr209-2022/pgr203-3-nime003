@@ -27,9 +27,9 @@ class ShopServerTest {
 
 
     @Test
-    public void shouldServeH1Test() throws IOException {
+    public void shouldServeCorrectTitle() throws IOException {
         var connection = openConnection("/");
-        assertThat(connection.getInputStream()).asString(StandardCharsets.UTF_8).contains("<h1>Welcome to Nimebu Shop");
+        assertThat(connection.getInputStream()).asString(StandardCharsets.UTF_8).contains("<title>Nimebu Shop</title>");
     }
 
     @Test
@@ -39,7 +39,7 @@ class ShopServerTest {
         assertThat(connection.getResponseCode()).isEqualTo(200);
         assertThat(connection.getInputStream())
                 .asString(StandardCharsets.UTF_8)
-                .contains("{\"productId\":10");
+                .contains("{\"productBrand\":\"testBrand\"");
     }
     @Test
     void shouldAddProductsTest() throws IOException {
@@ -48,8 +48,8 @@ class ShopServerTest {
         postConnection.setDoOutput(true);
         postConnection.getOutputStream().write(
                 Json.createObjectBuilder()
-                .add("productId","12")
-                .add("productName", "Papaya")
+                .add("productBrand","Doors")
+                .add("productName", "Doors OS 15")
                         .build()
                         .toString()
                         .getBytes(StandardCharsets.UTF_8)
@@ -60,7 +60,7 @@ class ShopServerTest {
         var connection = openConnection("/api/products");
         assertThat(connection.getInputStream())
                 .asString(StandardCharsets.UTF_8)
-                .contains("{\"productId\":10");
+                .contains("{\"productBrand\":\"Doors\"");
     }
 
 

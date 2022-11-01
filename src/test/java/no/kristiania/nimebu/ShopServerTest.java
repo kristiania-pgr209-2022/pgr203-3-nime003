@@ -27,9 +27,9 @@ class ShopServerTest {
 
 
     @Test
-    public void shouldServeH1Test() throws IOException {
+    public void shouldServeCorrectTitle() throws IOException {
         var connection = openConnection("/");
-        assertThat(connection.getInputStream()).asString(StandardCharsets.UTF_8).contains("<h1>Welcome to Nimebu Shop");
+        assertThat(connection.getInputStream()).asString(StandardCharsets.UTF_8).contains("<title>Nimebu Shop</title>");
     }
 
     @Test

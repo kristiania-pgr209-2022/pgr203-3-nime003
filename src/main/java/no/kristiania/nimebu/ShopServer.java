@@ -65,7 +65,7 @@ public class ShopServer {
     public static void main(String[] args) throws Exception {
         int port = Optional.ofNullable(System.getenv("HTTP_PLATFORM_PORT"))
                         .map(Integer::parseInt)
-                                .orElse(9080);
+                        .orElse(9080);
         var server = new ShopServer(port);
         server.start();
         logger.warn("Server starting at {}", server.getURL());

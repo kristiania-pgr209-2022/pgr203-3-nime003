@@ -1,14 +1,6 @@
 import {useEffect, useState} from 'react'
 import './App.css'
 
-function refreshPage() {
-    {/*This timeout is necessary because some browsers bug out when instantly reloading page after submitting a form*/}
-    setTimeout(reloadPage, 100);
-    function reloadPage(){
-        window.location.reload();
-    }
-}
-
 
 function AddProduct() {
     const [productBrand, setProductBrand] = useState("");
@@ -29,9 +21,9 @@ function AddProduct() {
 
     return <div>
         <form onSubmit={handleSubmit}>
-            <div><label>Product Brand: <input type={"number"} value={productBrand} onChange={event => setProductBrand(event.target.value)}/></label></div>
+            <div><label>Product Brand: <input type={"text"} value={productBrand} onChange={event => setProductBrand(event.target.value)}/></label></div>
             <div><label>Product name: <input type={"text"} value={productName} onChange={event => setProductName(event.target.value)}/></label></div>
-            <button onClick={refreshPage}>submit</button>
+            <button>submit</button>
         </form>
     </div>
 }

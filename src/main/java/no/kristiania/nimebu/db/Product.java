@@ -1,14 +1,9 @@
-package no.kristiania.nimebu;
+package no.kristiania.nimebu.db;
 
 public class Product {
     private String brand;
     private String name;
     private Long id;
-
-    public Product(String productBrand, String productName) {
-        this.brand = productBrand;
-        this.name = productName;
-    }
 
     public void setBrand(String brand) {this.brand = brand;}
     public String getBrand() {return brand;}

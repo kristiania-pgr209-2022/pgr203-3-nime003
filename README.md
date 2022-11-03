@@ -7,8 +7,7 @@
 
 #Link til code review
 
-* coming soon
-*
+* https://github.com/kristiania-pgr209-2022/pgr203-3-Krissapter/pull/1
 
 ## Oppgave
 

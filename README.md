@@ -5,7 +5,7 @@
 * https://nimebushop-nicolai.azurewebsites.net/
 * https://nimebushop-mebu.azurewebsites.net/
 
-#Link til code review
+# https://github.com/kristiania-pgr209-2022/pgr203-3-Krissapter/pull/1
 
 * https://github.com/kristiania-pgr209-2022/pgr203-3-Krissapter/pull/1
 

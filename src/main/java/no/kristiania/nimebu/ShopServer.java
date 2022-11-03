@@ -1,5 +1,6 @@
 package no.kristiania.nimebu;
 
+import no.kristiania.nimebu.db.Database;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.servlet.DefaultServlet;
@@ -10,6 +11,7 @@ import org.glassfish.jersey.servlet.ServletContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.sql.DataSource;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -21,7 +23,7 @@ public class ShopServer {
 
     private final Server shopServer;
 
-    public ShopServer(int port) throws IOException {
+    public ShopServer(int port, DataSource dataSource) throws IOException {
         this.shopServer = new Server(port);
 
         var wContext = new WebAppContext();
@@ -39,13 +41,12 @@ public class ShopServer {
             wContext.setBaseResource(resources);
         }
 
-        ServletHolder jerseyServlet = wContext.addServlet(ServletContainer.class, "/api/*");
-        jerseyServlet.setInitParameter("jersey.config.server.provider.packages", "no.kristiania.nimebu");
+        wContext.addServlet(new ServletHolder(new ServletContainer(new ShopResourceConfig(dataSource))), "/api/*");
 
         shopServer.setHandler(new HandlerList(wContext));
     }
 
-    private static File getSourceDirectory(Resource resources) throws IOException {
+    private File getSourceDirectory(Resource resources) throws IOException {
         if(resources.getFile() == null) return null;
 
         var sourceDir = new File(resources.getFile().getAbsoluteFile().toString()
@@ -62,11 +63,12 @@ public class ShopServer {
     public URL getURL() throws MalformedURLException {
         return shopServer.getURI().toURL();
     }
+
     public static void main(String[] args) throws Exception {
         int port = Optional.ofNullable(System.getenv("HTTP_PLATFORM_PORT"))
                         .map(Integer::parseInt)
-                        .orElse(9080);
-        var server = new ShopServer(port);
+                        .orElse(9090);
+        var server = new ShopServer(port, Database.getDataSource());
         server.start();
         logger.warn("Server starting at {}", server.getURL());
     }

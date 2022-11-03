@@ -3,3 +3,4 @@
 *.iml
 .idea
 /src/main/resources/webapp/
+application.properties

@@ -1,11 +1,8 @@
 package no.kristiania.nimebu.db;
 
-import no.kristiania.nimebu.Product;
-import org.flywaydb.core.Flyway;
-import org.h2.jdbcx.JdbcDataSource;
+import no.kristiania.nimebu.db.jdbc.JdbcProductDao;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 
 import java.sql.SQLException;
 
@@ -17,13 +14,7 @@ public class DaoTest {
 
     @BeforeEach
     void setup() {
-        var dataSource = new JdbcDataSource();
-        dataSource.setURL("jdbc:h2:mem:DaoTest;DB_CLOSE_DELAY=-1");
-
-        var flyway = Flyway.configure().dataSource(dataSource).load();
-        flyway.migrate();
-
-        dao = new ProductDao(dataSource);
+        dao = new JdbcProductDao(InMemoryDatasource.createTestDataSource());
     }
 
     @Test
@@ -39,6 +30,9 @@ public class DaoTest {
     }
 
     private Product sampleProduct() {
-        return new Product("test", "name");
+        var product = new Product();
+        product.setBrand("test");
+        product.setName("name");
+        return product;
     }
 }

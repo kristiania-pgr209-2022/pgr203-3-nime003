@@ -1,6 +1,5 @@
 create table products(
-    id      BIGSERIAl primary key,
+    id      int identity primary key,
     name    varchar(128),
     brand   varchar(128)
-
 )

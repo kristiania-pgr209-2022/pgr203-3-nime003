@@ -1,5 +1,15 @@
 # Innlevering 3: Deployment og database
 
+# Link til azure sites
+
+* https://nimebushop-nicolai.azurewebsites.net/
+* https://nimebushop-mebu.azurewebsites.net/
+
+#Link til code review
+
+* coming soon
+*
+
 ## Oppgave
 
 Dere skal videreføre Jetty-serveren fra innlevering 2 slik at den kan deployes på Azure.
@@ -26,19 +36,19 @@ Når dere oppretter repository via Github Classroom linken på Canvas, vil det a
   * [x] En JUnit test som sjekker at DAO lagrer mot H2
   * [x] En JUnit test som sjekker at title på index.html er korrekt (bygges fra Vite)
 * Innlevering
-  * [ ] Begge har levert link til Github Repository i Canvas
+  * [x] Begge har levert link til Github Repository i Canvas
   * [x] Koden er sjekket inn på et repository på https://github.com/kristiania-pgr209-2022
-  * [ ] GitHub repository er private. Dere skal gi tilgang til de som gir code review
+  * [x] GitHub repository er private. Dere skal gi tilgang til de som gir code review
 * Github
-  * [ ] Dere har merget pull en pull request
+  * [x] Dere har merget pull en pull request
   * [ ] Dere har mottatt code review fra medstudenter på feedback-pull request
   * [x] `.idea`, `*.iml` og `target` er lagt til i .gitignore og ikke sjekket inn
-  * [ ] Github Actions rapporterer at 100% av testene kjører grønt
+  * [x] Github Actions rapporterer at 100% av testene kjører grønt
 * Kode
   * [x] Koden skal være korrekt strukturert etter Maven sine standarder (koden skal ligge under `src/main/java` og tester under `src/test/java`)
   * [x] Klassene skal ligge i Java packages
   * [x] Klassenavn, pakkenavn, metodenavn og variabelnavn skal følge Java-konvensjoner når det gjelder små og store bokstaver
   * [x] Koden skal være korrekt indentert
 * README-fil
-  * [ ] Korrekt GitHub Actions status badge
+  * [x] Korrekt GitHub Actions status badge
   * [ ] Link til code review dere har gjort for medstudenter med minst én issue fra hver av dere

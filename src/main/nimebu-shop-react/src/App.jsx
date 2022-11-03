@@ -43,7 +43,10 @@ function ListProducts() {
   if (loading){
       return <div>Loading products ...</div>
   }
-  return <ul>{products.map(p => <div>product brand {p.productBrand} : {p.productName}</div>)}</ul>
+  return <ul>
+      <div style={{fontWeight: "bold"}}>product brand : product name</div>
+      {products.map(p => <div>{p.productBrand} : {p.productName}</div>)}
+  </ul>
 }
 
 function App() {

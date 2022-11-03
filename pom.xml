@@ -96,7 +96,6 @@
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
             <version>11.2.1.jre17</version>
-            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
@@ -208,6 +207,13 @@
                                 <directory>${project.basedir}/target</directory>
                                 <includes>
                                     <include>${project.build.finalName}.jar</include>
+                                </includes>
+                            </resource>
+                            <resource>
+                                <type>static</type>
+                                <directory>${project.basedir}</directory>
+                                <includes>
+                                    <include>*.properties</include>
                                 </includes>
                             </resource>
                         </resources>

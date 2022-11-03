@@ -1,0 +1,6 @@
+# Default ignored files
+/target/
+*.iml
+.idea
+/src/main/resources/webapp/
+application.properties
